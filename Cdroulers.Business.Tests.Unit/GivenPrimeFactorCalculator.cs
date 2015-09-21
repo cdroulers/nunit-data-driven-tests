@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+using Cdroulers.Business.Tests.Unit.Data;
 using NUnit.Framework;
 
 namespace Cdroulers.Business.Tests.Unit
@@ -34,6 +33,19 @@ namespace Cdroulers.Business.Tests.Unit
         public void When_calculating_prime_factors_for_two_Then_returns_list_with_element_two()
         {
             Assert.That(_calculator.CalculatePrimeFactors(2), Is.EquivalentTo(new[] { 2 }));
+        }
+
+        [TestCaseSource("ReadPrimeFactorTestCases")]
+        public void When_calculating_prime_factors_Then_returns_proper_list_of_factors(PrimeFactorTestCase testCase)
+        {
+            var actual = _calculator.CalculatePrimeFactors(testCase.Number);
+            Assert.That(actual, Is.EquivalentTo(testCase.PrimeFactors));
+        }
+
+        private static IEnumerable<PrimeFactorTestCase> ReadPrimeFactorTestCases()
+        {
+            var reader = new PrimeFactorTestCaseReader("Data/prime-factors.tsv");
+            return reader.ReadTestCases();
         }
     }
 }
