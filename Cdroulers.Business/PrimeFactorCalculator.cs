@@ -10,7 +10,7 @@ namespace Cdroulers.Business
         {
             if (number <= 0)
             {
-                throw new ArgumentOutOfRangeException("Cannot calculate prime factors for zero or negative numbers.");
+                throw new ArgumentOutOfRangeException("number", "Cannot calculate prime factors for zero or negative numbers.");
             }
 
             if (number == 1)
@@ -18,7 +18,7 @@ namespace Cdroulers.Business
                 return Enumerable.Empty<int>();
             }
 
-            return null;
+            return new[] { number };
         }
     }
 }
