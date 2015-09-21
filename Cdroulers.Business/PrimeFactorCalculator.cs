@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Cdroulers.Business
 {
@@ -13,12 +12,22 @@ namespace Cdroulers.Business
                 throw new ArgumentOutOfRangeException("number", "Cannot calculate prime factors for zero or negative numbers.");
             }
 
-            if (number == 1)
+            while (number != 1)
             {
-                return Enumerable.Empty<int>();
+                var divisor = LeastCommonDivisor(number);
+                number = number / divisor;
+                yield return divisor;
             }
+        }
 
-            return new[] { number };
+        private static int LeastCommonDivisor(int number)
+        {
+            int divisor = 2;
+            while (number % divisor != 0)
+            {
+                divisor++;
+            }
+            return divisor;
         }
     }
 }
