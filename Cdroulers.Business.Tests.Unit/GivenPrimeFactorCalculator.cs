@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using NUnit.Framework;
 
 namespace Cdroulers.Business.Tests.Unit
@@ -22,9 +25,15 @@ namespace Cdroulers.Business.Tests.Unit
         }
 
         [Test]
-        public void When_calculating_prime_factors_for_one_Then_returns_one()
+        public void When_calculating_prime_factors_for_one_Then_returns_empty_list()
         {
-            Assert.That(_calculator.CalculatePrimeFactors(1), Is.EquivalentTo(new[] { 1 }));
+            Assert.That(_calculator.CalculatePrimeFactors(1), Is.Empty);
+        }
+
+        [Test]
+        public void When_calculating_prime_factors_for_two_Then_returns_list_with_element_two()
+        {
+            Assert.That(_calculator.CalculatePrimeFactors(2), Is.EquivalentTo(new[] { 2 }));
         }
     }
 }

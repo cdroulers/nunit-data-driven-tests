@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Cdroulers.Business
 {
@@ -6,6 +8,16 @@ namespace Cdroulers.Business
     {
         public IEnumerable<int> CalculatePrimeFactors(int number)
         {
+            if (number <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Cannot calculate prime factors for zero or negative numbers.");
+            }
+
+            if (number == 1)
+            {
+                return Enumerable.Empty<int>();
+            }
+
             return null;
         }
     }
